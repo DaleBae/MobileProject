@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "585386401814",
+    "firebase_url": "https://securityzone-43840.firebaseio.com",
+    "project_id": "securityzone-43840",
+    "storage_bucket": "securityzone-43840.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585386401814:android:394e892ed5e0aed1",
+        "android_client_info": {
+          "package_name": "com.example.jermy.securityzone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585386401814-3moh8mg527fogvhl1jc9fc2n2p0qb48a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jermy.securityzone",
+            "certificate_hash": "19b0e5ae5ba328a6f14be62dc2213d76455bdcc7"
+          }
+        },
+        {
+          "client_id": "585386401814-a7pbiv2hfdhr5qpndefhtdia8n4r70m9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBifk30K-2O-CNA4NVCvpWw8kyMuwGHe0s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585386401814-a7pbiv2hfdhr5qpndefhtdia8n4r70m9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
