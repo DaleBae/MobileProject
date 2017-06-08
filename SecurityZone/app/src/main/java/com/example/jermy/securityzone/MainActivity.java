@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void init(){
         bicycle=(ImageView)findViewById(R.id.bicycle);
-        bicycle.setImageResource(R.drawable.img1);
+        bicycle.setImageResource(R.drawable.bicycle);
 
     }
 }
