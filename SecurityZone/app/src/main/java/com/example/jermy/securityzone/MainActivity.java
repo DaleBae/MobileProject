@@ -6,7 +6,6 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     ImageView bicycle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     public void init(){
         bicycle=(ImageView)findViewById(R.id.bicycle);
         bicycle.setImageResource(R.drawable.img1);
+
+
 
     }
 }
