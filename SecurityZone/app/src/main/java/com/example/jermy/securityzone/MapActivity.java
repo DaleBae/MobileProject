@@ -2,6 +2,8 @@ package com.example.jermy.securityzone;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -25,6 +29,19 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks
 , GoogleApiClient.OnConnectionFailedListener, LocationListener{
@@ -32,7 +49,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     GoogleMap map;
     double latitude;
     double longitude;
-    Marker currentmarker;
+    Marker markers;
+    EditText txt;
+    Geocoder gc;
 
     private final static int MY_LOCATION_REQUEST_CODE = 1000;
     private final static int REQ_PERMISSION = 1000;
@@ -41,6 +60,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     Location mLastLocation;
     LocationRequest mLocationRequest;
 
+    DatabaseReference storeTable;
+    DatabaseReference cctvTable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +79,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void init() {
+        txt=(EditText)findViewById(R.id.txt);
         mapFr = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFr.getMapAsync(this);
         if (mGoogleApiClient == null) {
@@ -72,6 +94,39 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .setInterval(10000)
                 .setFastestInterval(5000)
                 .setSmallestDisplacement(30);
+        gc=new Geocoder(this, Locale.KOREAN);
+
+        storeTable= FirebaseDatabase.getInstance().getReference("SecurityZone/store");
+        cctvTable=FirebaseDatabase.getInstance().getReference("SecurityZone/cctv");
+        Query query=storeTable.orderByKey();
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+                    try {
+                        JSONObject json=new JSONObject(data.getValue().toString());
+                        Log.i("test",json.toString());
+                        latitude=Double.parseDouble(json.getString("latitude"));
+                        longitude=Double.parseDouble(json.getString("longitude"));
+                        setMarkers();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    public void setMarkers(){
+        LatLng temp = new LatLng(latitude,longitude);
+        markers = map.addMarker(new MarkerOptions()
+                .position(temp)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.bikemarker)));
     }
 
     @Override
@@ -136,12 +191,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (mLastLocation != null) {
             Log.i("Location", (String.valueOf("LastLocation" + mLastLocation.getLatitude() + "::" + mLastLocation.getLongitude())));
             latitude = mLastLocation.getLatitude();
-
             longitude = mLastLocation.getLongitude();
-            LatLng current = new LatLng(latitude,longitude);
-            currentmarker = map.addMarker(new MarkerOptions()
-                    .position(current)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.bikemarker)));
             updateMap();
         }
     }
@@ -161,11 +211,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onLocationChanged(Location location) {
 
-        LatLng latLng2=new LatLng(location.getLatitude(),location.getLongitude());
-        currentmarker = map.addMarker(new MarkerOptions()
-                .position(latLng2)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.bikemarker)));
-        updateMap();
         }
 
+    public void searchClick(View view) {
+        String p = txt.getText().toString();
+        searchPlace(p);
+    }
+    void searchPlace(String place) {
+        try {
+            List<Address> addr = gc.getFromLocationName(place, 5);
+            if (addr != null) {
+                latitude = addr.get(0).getLatitude();
+                longitude = addr.get(0).getLongitude();
+                updateMap();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

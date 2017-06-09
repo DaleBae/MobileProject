@@ -13,13 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/txt"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent" />
         <Button
+            android:onClick="searchClick"
             android:text="검색"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
+
     </LinearLayout>
     <fragment
         android:id="@+id/map"
