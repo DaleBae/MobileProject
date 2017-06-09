@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/basic_background"
+    tools:context="com.example.jermy.securityzone.FilterActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_marginLeft="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <TextView
+            android:text="차양막 설치 여부 : "
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <RadioGroup
+            android:id="@+id/rg1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioButton
+                android:checked="true"
+                android:text="유"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:text="무"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:text="상관없음"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <TextView
+            android:text="공기주입기 설치 여부 : "
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <RadioGroup
+            android:id="@+id/rg2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioButton
+                android:checked="true"
+                android:text="유"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:text="무"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:text="상관없음"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <TextView
+            android:text="수리대 설치 여부 : "
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <RadioGroup
+            android:id="@+id/rg3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioButton
+                android:text="유"
+                android:checked="true"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:text="무"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:text="상관없음"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/chk9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <Button
+        android:onClick="filterbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="지도 Go !"
+        android:textSize="20sp"/>
+</LinearLayout>

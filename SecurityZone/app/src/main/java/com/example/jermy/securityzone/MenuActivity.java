@@ -5,11 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class MenuActivity extends AppCompatActivity {
-    Button btn1;
-    Button btn2;
+    ImageButton btn1;
+    ImageButton btn2;
+    ImageButton btn3;
+    ImageButton btn4;
+    ImageView explan;
+
+    FrameLayout framelayout;
 /*    FirebaseDatabase database;
     int cctvcount;
     private FirebaseAuth mAuth;*/
@@ -18,13 +25,25 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
         init();
 //        initDB();
     }
     public void init(){
 //        cctvcount=0;
-        btn1=(Button)findViewById(R.id.btn1);
-        btn2=(Button)findViewById(R.id.btn2);
+        framelayout=(FrameLayout)findViewById(R.id.id);
+        imgBtn();
+        explan = (ImageView)findViewById(R.id.explan);
+
+/*        mAuth= FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword("jermy0131@naver.com","wpfmal1234");*/
+    }
+
+    private void imgBtn() {
+        btn1=(ImageButton)findViewById(R.id.btn1);
+        btn2=(ImageButton)findViewById(R.id.btn2);
+        btn3=(ImageButton)findViewById(R.id.btn3);
+        btn4=(ImageButton)findViewById(R.id.btn4);
         btn1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -57,20 +76,51 @@ public class MenuActivity extends AppCompatActivity {
                 return false;
             }
         });
-/*        mAuth= FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword("jermy0131@naver.com","wpfmal1234");*/
+        btn3.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        btn3.setBackgroundColor(getResources().getColor(R.color.btn2_after_touch));
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        btn3.setBackgroundColor(getResources().getColor(R.color.btn2_before_touch));
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+        btn4.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        btn4.setBackgroundColor(getResources().getColor(R.color.btn2_after_touch));
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        btn4.setBackgroundColor(getResources().getColor(R.color.btn2_before_touch));
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
     }
-/*    public void initDB(){
-        database = FirebaseDatabase.getInstance();
-        String result = "";
-        Scanner scanner = new Scanner(getResources().openRawResource(R.raw.store));
-        while (scanner.hasNextLine()) {
-            String str = scanner.nextLine();
-            result += str;
+
+/*        public void initDB(){
+            database = FirebaseDatabase.getInstance();
+            String result = "";
+            Scanner scanner = new Scanner(getResources().openRawResource(R.raw.store));
+            while (scanner.hasNextLine()) {
+                String str = scanner.nextLine();
+                result += str;
+            }
+            parsingJson(result);
         }
-        parsingJson(result);
-    }*/
-/*    public void parsingJson(String result) {
+    public void parsingJson(String result) {
         try {
             DatabaseReference table = database.getReference("SecurityZone/store");
 
@@ -114,11 +164,31 @@ public class MenuActivity extends AppCompatActivity {
     }*/
     public void btn1Click(View view) {
         Intent intent=new Intent(this,MapActivity.class);
+        int Awning=0;
+        int Airinjector=0;
+        int Fix=0;
+        intent.putExtra("Awning",Awning);
+        intent.putExtra("Airinjector",Airinjector);
+        intent.putExtra("Fix",Fix);
         startActivity(intent);
         overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.fade_in);
     }
 
     public void btn2Click(View view) {
+        Intent intent=new Intent(this,FilterActivity.class);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.fade_in);
     }
 
+    public void btn3Click(View view){
+        framelayout.setVisibility(View.VISIBLE);
+        explan.setImageResource(R.drawable.explan1);
+    }
+    public void btn4Click(View view) {
+
+    }
+
+    public void imgclicked(View view) {
+        framelayout.setVisibility(View.GONE);
+    }
 }

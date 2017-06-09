@@ -17,14 +17,14 @@ public class MainActivity extends AppCompatActivity {
     public void init(){
         bicycle=(ImageView)findViewById(R.id.bicycle);
         bicycle.setImageResource(R.drawable.bicycle);
-
-
-
     }
+
+
 
     public void imgClick(View view) {
         Intent intent = new Intent(this,MenuActivity.class);
         startActivity(intent);
         overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.fade_in);
     }
+
 }

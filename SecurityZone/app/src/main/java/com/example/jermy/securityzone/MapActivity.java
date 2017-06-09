@@ -1,6 +1,7 @@
 package com.example.jermy.securityzone;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -53,6 +54,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     EditText txt;
     Geocoder gc;
 
+    int Awning;
+    int Airinjector;
+    int Fix;
+
+    double[] cctvlat;
+    double[] cctvlng;
+    double[] storelat;
+    double[] storelng;
+    int[] storecctv;
+
     private final static int MY_LOCATION_REQUEST_CODE = 1000;
     private final static int REQ_PERMISSION = 1000;
 
@@ -79,7 +90,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void init() {
-        txt=(EditText)findViewById(R.id.txt);
+        cctvlat=new double[872];
+        cctvlng=new double[872];
+        storelat=new double[872];
+        storelng=new double[298];
+        storecctv=new int[298];
+
+        Intent intent = getIntent();
+        Awning = intent.getIntExtra("Awning",0);
+        Airinjector = intent.getIntExtra("Airinjector",0);
+        Fix = intent.getIntExtra("Fix",0);
+
+        txt = (EditText) findViewById(R.id.txt);
         mapFr = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFr.getMapAsync(this);
         if (mGoogleApiClient == null) {
@@ -94,21 +116,42 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .setInterval(10000)
                 .setFastestInterval(5000)
                 .setSmallestDisplacement(30);
-        gc=new Geocoder(this, Locale.KOREAN);
+        gc = new Geocoder(this, Locale.KOREAN);
 
-        storeTable= FirebaseDatabase.getInstance().getReference("SecurityZone/store");
         cctvTable=FirebaseDatabase.getInstance().getReference("SecurityZone/cctv");
+        storeTable= FirebaseDatabase.getInstance().getReference("SecurityZone/store");
         Query query=storeTable.orderByKey();
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     try {
+                        boolean set=true;
+
                         JSONObject json=new JSONObject(data.getValue().toString());
-                        Log.i("test",json.toString());
-                        latitude=Double.parseDouble(json.getString("latitude"));
-                        longitude=Double.parseDouble(json.getString("longitude"));
-                        setMarkers();
+                        latitude = Double.parseDouble(json.getString("latitude"));
+                        longitude = Double.parseDouble(json.getString("longitude"));
+                        if(Awning==1&&json.getString("Awnings").equals("N")) {
+                            set=false;
+                        }
+                        if(Awning==2&&json.getString("Awnings").equals("Y")){
+                            set=false;
+                        }
+                        if(Airinjector==1&&json.getString("Airinjector").equals("N")){
+                            set=false;
+                        }
+                        if(Airinjector==2&&json.getString("Airinjector").equals("Y")){
+                            set=false;
+                        }
+                        if(Fix==1&&json.getString("fix").equals("N")){
+                            set=false;
+                        }
+                        if(Fix==2&&json.getString("fix").equals("Y")){
+                            set=false;
+                        }
+                        if(set) {
+                            setMarkers();
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -120,7 +163,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
-
+        Calculate();
+        for(int i=0;i<298;i++){
+            Log.i("test",cctvlat[i]+" ");
+        }
     }
     public void setMarkers(){
         LatLng temp = new LatLng(latitude,longitude);
@@ -229,4 +275,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
     }
+    public void Calculate(){
+        for(int i=0;i<872;i++){
+            for(int j=0;j<298;j++){
+                if(cctvlat[i]-storelat[j]<=0.00174&&cctvlat[i]-storelat[j]>=-0.00174
+                        &&cctvlng[i]-storelng[j]<=0.0022&&cctvlng[i]-storelng[j]>=-0.0022){
+                    storecctv[j]++;
+                }
+            }
+        }
+    }
+
 }

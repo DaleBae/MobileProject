@@ -8,8 +8,16 @@
     android:background="@color/basic_background"
     tools:context="com.example.jermy.securityzone.MapActivity">
 
+    <TextView
+        android:layout_marginLeft="20sp"
+        android:textColor="@android:color/white"
+        android:text="위치 검색 :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText

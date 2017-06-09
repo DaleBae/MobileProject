@@ -6,48 +6,119 @@
     android:layout_height="match_parent"
     android:background="@color/basic_background"
     android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/menu_layout"
     tools:context="com.example.jermy.securityzone.MenuActivity">
 
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="20sp"
+    <FrameLayout
+        android:id="@+id/id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:layout_margin="10sp"
-            android:layout_marginTop="130sp"
-            android:layout_marginBottom="20sp"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/explan"
+            android:onClick="imgclicked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+        <ImageButton
             android:id="@+id/btn1"
             android:onClick="btn1Click"
-            android:text="보관소 찾기"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:background="@color/btn1_before_touch"
-            android:layout_columnSpan="2"/>
-
-        <Button
-            android:layout_margin="10sp"
-            android:layout_marginTop="20sp"
-            android:layout_marginBottom="50sp"
-            android:id="@+id/btn2"
-            android:onClick="btn2Click"
-            android:text="필터 설정"
-            android:textColor="@android:color/white"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:background="@color/btn2_before_touch"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img1"
+            android:src="@drawable/img1"
             />
 
+        <ImageButton
+            android:id="@+id/btn2"
+            android:onClick="btn2Click"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img2"
+            android:src="@drawable/img2"
+            />
+    </GridLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:text="검색"
+            android:layout_marginRight="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:text="필터"
+            android:layout_marginLeft="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <ImageButton
+            android:id="@+id/btn3"
+            android:onClick="btn3Click"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img3"
+            android:src="@drawable/img3"
+            />
+        <ImageButton
+            android:id="@+id/btn4"
+            android:onClick="btn4Click"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img4"
+            android:src="@drawable/img4"/>
+    </GridLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:text="설명"
+            android:layout_marginRight="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:text="소개"
+            android:layout_marginLeft="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>
