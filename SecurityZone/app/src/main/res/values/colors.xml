@@ -3,6 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="basic_background">#0F456C</color>
-    <color name="EditTexthint">#807B84</color>
+    <color name="basic_background">#37474F</color>
+    <color name="btn1_before_touch">#D82115</color>
+    <color name="btn1_after_touch">#D8827C</color>
+    <color name="btn2_before_touch">#502E72</color>
+    <color name="btn2_after_touch">#645771</color>
 </resources>

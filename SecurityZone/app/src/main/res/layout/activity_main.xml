@@ -5,19 +5,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#37474F"
+    android:background="@color/basic_background"
     tools:context="com.example.jermy.securityzone.MainActivity">
 
-   <ImageView
-       android:id="@+id/bicycle"
-       android:onClick="true"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="200dp"
-       android:layout_gravity="center"
-       />
     <TextView
         android:text="Security Zone"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+   <ImageView
+       android:id="@+id/bicycle"
+       android:onClick="imgClick"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       />
+
+    <TextView
+        android:text="그림을 클릭하시면 다음 화면으로 넘어갑니다."
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textStyle="bold"

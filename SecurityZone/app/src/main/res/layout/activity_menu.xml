@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/basic_background"
+    android:orientation="vertical"
+    tools:context="com.example.jermy.securityzone.MenuActivity">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_margin="10sp"
+            android:layout_marginTop="130sp"
+            android:layout_marginBottom="20sp"
+            android:id="@+id/btn1"
+            android:onClick="btn1Click"
+            android:text="보관소 찾기"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="@color/btn1_before_touch"
+            android:layout_columnSpan="2"/>
+
+        <Button
+            android:layout_margin="10sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="50sp"
+            android:id="@+id/btn2"
+            android:onClick="btn2Click"
+            android:text="필터 설정"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="@color/btn2_before_touch"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
