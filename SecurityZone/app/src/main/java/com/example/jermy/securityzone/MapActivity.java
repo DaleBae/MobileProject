@@ -136,6 +136,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (mLastLocation != null) {
             Log.i("Location", (String.valueOf("LastLocation" + mLastLocation.getLatitude() + "::" + mLastLocation.getLongitude())));
             latitude = mLastLocation.getLatitude();
+
             longitude = mLastLocation.getLongitude();
             LatLng current = new LatLng(latitude,longitude);
             currentmarker = map.addMarker(new MarkerOptions()

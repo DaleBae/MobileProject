@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "585386401814",
-    "firebase_url": "https://securityzone-43840.firebaseio.com",
-    "project_id": "securityzone-43840",
-    "storage_bucket": "securityzone-43840.appspot.com"
+    "project_number": "510277473654",
+    "firebase_url": "https://securityzone-1496991861201.firebaseio.com",
+    "project_id": "securityzone-1496991861201",
+    "storage_bucket": "securityzone-1496991861201.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:585386401814:android:394e892ed5e0aed1",
+        "mobilesdk_app_id": "1:510277473654:android:d1da0c2ae7ad38b2",
         "android_client_info": {
-          "package_name": "com.example.jermy.securityzone"
+          "package_name": "com.example.jermy.SecurityZone"
         }
       },
       "oauth_client": [
         {
-          "client_id": "585386401814-3moh8mg527fogvhl1jc9fc2n2p0qb48a.apps.googleusercontent.com",
+          "client_id": "510277473654-vsveuvq635r9kgq7i9niabuubclvhs67.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.jermy.securityzone",
-            "certificate_hash": "19b0e5ae5ba328a6f14be62dc2213d76455bdcc7"
+            "package_name": "com.example.jermy.SecurityZone",
+            "certificate_hash": "22005ac020dbd125b9ca2c038771a3e77bcd75dc"
           }
         },
         {
-          "client_id": "585386401814-a7pbiv2hfdhr5qpndefhtdia8n4r70m9.apps.googleusercontent.com",
+          "client_id": "510277473654-hg9p3u43dhar5f1tqthqvvfa0040na4o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBifk30K-2O-CNA4NVCvpWw8kyMuwGHe0s"
+          "current_key": "AIzaSyBdk2xA17K2uURidreHOgJjuLT63HLvOnc"
         }
       ],
       "services": {
@@ -40,7 +40,51 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "585386401814-a7pbiv2hfdhr5qpndefhtdia8n4r70m9.apps.googleusercontent.com",
+              "client_id": "510277473654-hg9p3u43dhar5f1tqthqvvfa0040na4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510277473654:android:394e892ed5e0aed1",
+        "android_client_info": {
+          "package_name": "com.example.jermy.securityzone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510277473654-b7v4dffvpl0f98s33c4huklniglvt4m3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jermy.securityzone",
+            "certificate_hash": "22005ac020dbd125b9ca2c038771a3e77bcd75dc"
+          }
+        },
+        {
+          "client_id": "510277473654-hg9p3u43dhar5f1tqthqvvfa0040na4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdk2xA17K2uURidreHOgJjuLT63HLvOnc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510277473654-hg9p3u43dhar5f1tqthqvvfa0040na4o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
