@@ -50,6 +50,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     GoogleMap map;
     double latitude;
     double longitude;
+    int nearcctv;
     Marker markers;
     EditText txt;
     Geocoder gc;
@@ -58,11 +59,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     int Airinjector;
     int Fix;
 
-    double[] cctvlat;
-    double[] cctvlng;
-    double[] storelat;
-    double[] storelng;
-    int[] storecctv;
 
     private final static int MY_LOCATION_REQUEST_CODE = 1000;
     private final static int REQ_PERMISSION = 1000;
@@ -90,11 +86,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void init() {
-        cctvlat=new double[872];
-        cctvlng=new double[872];
-        storelat=new double[872];
-        storelng=new double[298];
-        storecctv=new int[298];
+
 
         Intent intent = getIntent();
         Awning = intent.getIntExtra("Awning",0);
@@ -131,6 +123,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         JSONObject json=new JSONObject(data.getValue().toString());
                         latitude = Double.parseDouble(json.getString("latitude"));
                         longitude = Double.parseDouble(json.getString("longitude"));
+                        nearcctv = Integer.parseInt(json.getString("nearcctv"));
                         if(Awning==1&&json.getString("Awnings").equals("N")) {
                             set=false;
                         }
@@ -163,19 +156,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
-        Calculate();
-        for(int i=0;i<298;i++){
-            Log.i("test",cctvlat[i]+" ");
-        }
+
     }
     public void setMarkers(){
         LatLng temp = new LatLng(latitude,longitude);
         markers = map.addMarker(new MarkerOptions()
                 .position(temp)
+                .title("주변 cctv 개수 : "+nearcctv)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.bikemarker)));
     }
 
-    @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -275,15 +265,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
     }
-    public void Calculate(){
-        for(int i=0;i<872;i++){
-            for(int j=0;j<298;j++){
-                if(cctvlat[i]-storelat[j]<=0.00174&&cctvlat[i]-storelat[j]>=-0.00174
-                        &&cctvlng[i]-storelng[j]<=0.0022&&cctvlng[i]-storelng[j]>=-0.0022){
-                    storecctv[j]++;
-                }
-            }
-        }
-    }
+
 
 }

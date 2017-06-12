@@ -17,9 +17,10 @@ public class MenuActivity extends AppCompatActivity {
     ImageView explan;
 
     FrameLayout framelayout;
-/*    FirebaseDatabase database;
+/*
+    FirebaseDatabase database;
     int cctvcount;
-    private FirebaseAuth mAuth;*/
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,6 @@ public class MenuActivity extends AppCompatActivity {
         imgBtn();
         explan = (ImageView)findViewById(R.id.explan);
 
-/*        mAuth= FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword("jermy0131@naver.com","wpfmal1234");*/
     }
 
     private void imgBtn() {
@@ -110,56 +109,58 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-/*        public void initDB(){
-            database = FirebaseDatabase.getInstance();
-            String result = "";
-            Scanner scanner = new Scanner(getResources().openRawResource(R.raw.store));
-            while (scanner.hasNextLine()) {
-                String str = scanner.nextLine();
-                result += str;
-            }
-            parsingJson(result);
+/*    public void initDB() {
+        double[] cctvlat=new double[872];
+        double[] cctvlng=new double[872];
+        double[] storelat=new double[872];
+        double[] storelng=new double[298];
+        int[] storecctv=new int[298];
+        database = FirebaseDatabase.getInstance();
+        String result = "";
+        Scanner scanner = new Scanner(getResources().openRawResource(R.raw.store));
+        while (scanner.hasNextLine()) {
+            String str = scanner.nextLine();
+            result += str;
         }
-    public void parsingJson(String result) {
+        String result2 ="";
+        Scanner scanner2 = new Scanner(getResources().openRawResource(cctv));
+        while(scanner2.hasNextLine()){
+            String str=scanner2.nextLine();
+            result2+=str;
+        }
         try {
-            DatabaseReference table = database.getReference("SecurityZone/store");
-
             JSONObject json = new JSONObject(result);
             JSONArray array = json.getJSONArray("store");
             for (int i = 0; i < array.length(); i++) {
-                DatabaseReference cctv=table.child("num"+cctvcount);
-                String col1 = array.getJSONObject(i).getString("storeName");
-                String col2 = array.getJSONObject(i).getString("Address1");
-                String col3 = array.getJSONObject(i).getString("Address2");
-                String col4 = array.getJSONObject(i).getString("latitude");
-                String col5 = array.getJSONObject(i).getString("longitude");
-                String col6 = array.getJSONObject(i).getString("capacity");
-                String col7 = array.getJSONObject(i).getString("setYear");
-                String col8 = array.getJSONObject(i).getString("setType");
-                String col9 = array.getJSONObject(i).getString("Awnings");
-                String col10 = array.getJSONObject(i).getString("Airinjector");
-                String col11 = array.getJSONObject(i).getString("AirinjectorType");
-                String col12 = array.getJSONObject(i).getString("fix");
-                String col13 = array.getJSONObject(i).getString("managecontact");
-                String col14 = array.getJSONObject(i).getString("managename");
-                cctv.child("storeName").setValue(col1);
-                cctv.child("Address1").setValue(col2);
-                cctv.child("Address2").setValue(col3);
-                cctv.child("latitude").setValue(col4);
-                cctv.child("longitude").setValue(col5);
-                cctv.child("capacity").setValue(col6);
-                cctv.child("setYear").setValue(col7);
-                cctv.child("setType").setValue(col8);
-                cctv.child("Awnings").setValue(col9);
-                cctv.child("Airinjector").setValue(col10);
-                cctv.child("AirinjectorType").setValue(col11);
-                cctv.child("fix").setValue(col12);
-                cctv.child("managecontact").setValue(col13);
-                cctv.child("managename").setValue(col14);
-                cctvcount++;
+                storelat[i] = Double.parseDouble(array.getJSONObject(i).getString("latitude"));
+                storelng[i] = Double.parseDouble(array.getJSONObject(i).getString("longitude"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        try {
+            JSONObject json2 = new JSONObject(result2);
+            JSONArray array2 = json2.getJSONArray("cctv");
+            for (int i = 0; i < array2.length(); i++) {
+                cctvlat[i] = Double.parseDouble(array2.getJSONObject(i).getString("latitude"));
+                cctvlng[i] = Double.parseDouble(array2.getJSONObject(i).getString("longitude"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for(int i=0;i<872;i++){
+            for(int j=0;j<298;j++){
+                if(cctvlat[i]-storelat[j]<=0.00174&&cctvlat[i]-storelat[j]>=-0.00174
+                        &&cctvlng[i]-storelng[j]<=0.0022&&cctvlng[i]-storelng[j]>=-0.0022){
+                    storecctv[j]++;
+                }
+            }
+        }
+        DatabaseReference table=database.getReference("SecurityZone/store");
+        int num=0;
+        for(num=0;num<298;num++) {
+            DatabaseReference temp = table.child("num"+num);
+            temp.child("nearcctv").setValue(storecctv[num]);
         }
     }*/
     public void btn1Click(View view) {
